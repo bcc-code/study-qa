@@ -116,7 +116,7 @@ const openSubmission = () => {
     </div>
     <div
       v-else
-      class="flex flex-col items-center flex-1"
+      class="flex flex-col items-center flex-1 select-none"
       :class="{
         'justify-center':
           !questionsSnapshot.isLoading.value &&
