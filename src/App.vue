@@ -43,10 +43,15 @@ const fetchWeek = async (week: number) => {
           reject(result.errors[0]);
           return;
         }
-        const questions = result.data.map((record) => ({
-          question: record.Question,
-          answer: record.Answer,
-        }));
+        const questions: Question[] = [];
+        for (const record of result.data) {
+          if (record.Question?.trim() && record.Answer?.trim()) {
+            questions.push({
+              question: record.Question.trim(),
+              answer: record.Answer.trim(),
+            });
+          }
+        }
         cached.value[week] = questions;
         resolve(questions);
       },
