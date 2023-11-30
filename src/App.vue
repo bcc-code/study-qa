@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import TabButton from "./components/TabButton.vue";
 import QuestionAccordion from "./components/QuestionAccordion.vue";
 import { Question } from "./types";
 import { parse } from "papaparse";
 import { useAsyncState } from "@vueuse/core";
 import { weeksBetween } from "./utils";
+import LoadingSpinner from "./components/LoadingSpinner.vue";
 const startDate = new Date("2023-11-06");
 const currentWeek = weeksBetween(startDate, new Date());
 const weeks = [...Array(currentWeek).keys()].map((i) => i + 1);
@@ -21,9 +22,17 @@ const activeWeek = ref(
   queryParamWeekNumberValid ? queryParamWeekNumber : currentWeek
 );
 
+const fontsLoading = ref(true);
+
+onMounted(() => {
+  document.fonts.ready.then(() => {
+    fontsLoading.value = false;
+  });
+});
+
 const cached = ref<{ [key: number]: Question[] }>({});
 const fetchWeek = async (week: number) => {
-  const result = await fetch(`/weeks/${week}.csv`);
+  const result = await fetch(import.meta.env.BASE_URL + `weeks/${week}.csv`);
   if (result.status > 399) throw new Error("Failed to fetch questions");
   const csv = await result.text();
 
@@ -86,6 +95,7 @@ const openSubmission = () => {
   >
     <div
       class="shrink-0 pb-4 pt-2 px-4 border-b border-b-separator flex overflow-x-scroll no-scrollbar"
+      :class="{ invisible: fontsLoading }"
     >
       <TabButton
         v-for="week in weeks.sort((a, b) => b - a)"
@@ -97,9 +107,21 @@ const openSubmission = () => {
         Week {{ week }}
       </TabButton>
     </div>
+
     <div
+      class="flex flex-col items-center justify-center py-6 px-8 flex-1"
+      v-if="fontsLoading || questionsSnapshot.isLoading.value"
+    >
+      <LoadingSpinner />
+    </div>
+    <div
+      v-else
       class="flex flex-col items-center flex-1"
-      :class="{ 'justify-center': !questions || questions.length == 0 }"
+      :class="{
+        'justify-center':
+          !questionsSnapshot.isLoading.value &&
+          (!questions || questions.length == 0),
+      }"
     >
       <div class="flex flex-col items-center justify-center py-6 px-8">
         <svg
