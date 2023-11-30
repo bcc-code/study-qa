@@ -1,0 +1,27 @@
+{
+  "name": "qa2",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.6.1",
+    "buffer": "^6.0.3",
+    "papaparse": "^5.4.1",
+    "vue": "^3.3.8"
+  },
+  "devDependencies": {
+    "@types/papaparse": "^5.3.14",
+    "@vitejs/plugin-vue": "^4.5.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.0",
+    "vue-tsc": "^1.8.22"
+  }
+}
