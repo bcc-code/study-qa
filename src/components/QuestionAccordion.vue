@@ -31,7 +31,7 @@ watch(isOpen, () => {
       </div>
       <div class="flex flex-col p-4">
         <div class="flex w-full cursor-pointer" @click="isOpen = !isOpen">
-          <div class="flex-1 pr-1">
+          <div class="flex-1 pr-1 text-style-title-1 text-left">
             {{ index + 1 }}. {{ question.question }}
           </div>
           <svg
@@ -40,7 +40,7 @@ watch(isOpen, () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            class="transform transition duration-300 ease-out"
+            class="transform transition duration-150 ease-out fill-current text-label-1"
             :class="{
               'transform rotate-180': isOpen,
             }"
@@ -49,7 +49,7 @@ watch(isOpen, () => {
               fill-rule="evenodd"
               clip-rule="evenodd"
               d="M5.29297 9.70712L6.70718 8.29291L12.0001 13.5858L17.293 8.29291L18.7072 9.70712L12.0001 16.4142L5.29297 9.70712Z"
-              fill="#0D131A"
+              fill="currentColor"
             />
           </svg>
         </div>

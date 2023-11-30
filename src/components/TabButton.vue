@@ -6,9 +6,10 @@ defineProps<{
 
 <template>
   <div
-    class="button transition-all duration-150 ease-out cursor-pointer"
+    class="button transition-all border border-[rgba(0,0,0,0)] duration-100 ease-out cursor-pointer"
     :class="{
-      'bg-white border border-separator  shadow-none  text-label-1': !active,
+      'bg-background-1 border border-separator  shadow-none text-label-1':
+        !active,
     }"
   >
     <slot></slot>

@@ -3,10 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --light-label-2: #46494d;
-  --light-label-3: #757b80;
-  --light-background-4: #0d131a;
-  --light-on-color-1: #ffffff;
+  /* Light theme */
+  --background-1: #ffffff;
+  --background-2: #f5f6f7;
+  --background-4: #0d131a;
+  --label-1: #0d131a;
+  --label-2: #46494d;
+  --label-3: #757b80;
+  --on-color-1: #ffffff;
+  --separator: rgba(13, 19, 26, 0.1);
+}
+
+.theme-dark {
+  --background-1: rgba(23, 27, 31, 1);
+  --background-2: #22272b;
+  --background-4: #e8f0f7;
+  --label-1: #e9f0f7;
+  --label-2: #c7ced4;
+  --label-3: #979ca1;
+  --on-color-1: #0d131a;
+  --separator: rgba(129, 136, 142, 0.12);
 }
 
 @layer utilities {
@@ -27,7 +43,7 @@
 @layer components {
   .text-style-title-1 {
     @apply antialiased;
-    color: var(--light-label-1, #0d131a);
+    color: var(--label-1);
     text-align: center;
 
     /* title/1 */
@@ -39,7 +55,7 @@
   }
   .text-style-paragraph-2 {
     @apply antialiased;
-    color: var(--light-label-2);
+    color: var(--label-2);
     /* paragraph/2 */
     font-family: Inter;
     font-size: 15px;
@@ -50,7 +66,7 @@
   }
   .text-style-subtitle-2 {
     @apply antialiased;
-    color: var(--light-label-3, #757b80);
+    color: var(--label-3);
     text-align: center;
 
     /* subtitle/2 */
@@ -63,8 +79,8 @@
   }
   .button {
     @apply py-2 px-4 flex items-center justify-center rounded-3xl cursor-pointer whitespace-nowrap select-none;
-    background: var(--light-background-4, #0d131a);
-    color: var(--light-on-color-1);
+    background: var(--background-4);
+    color: var(--on-color-1);
     /* Floating */
     box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.05),
       0px 1px 4px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
