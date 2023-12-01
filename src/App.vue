@@ -37,10 +37,11 @@ onMounted(() => {
 });
 
 const i18n = useI18n();
+const contentLanguageQueryParam = queryParams.get("content-language");
 
 const cached = ref<{ [key: number]: Question[] }>({});
 const fetchWeek = async (week: number) => {
-  const locale = i18n.locale.value;
+  const locale = contentLanguageQueryParam || i18n.locale.value;
   var result = await fetch(
     import.meta.env.BASE_URL + `weeks/${week}/${locale}.csv`
   );
