@@ -109,7 +109,7 @@ const openSubmission = () => {
         @click="setWeek(week)"
         class="mr-2"
       >
-        Week {{ week }}
+        {{ $t("week") }} {{ week }}
       </TabButton>
     </div>
 
@@ -151,13 +151,14 @@ const openSubmission = () => {
           />
         </svg>
         <h2 class="mt-2 text-style-title-1">
-          Ask a question about todays episode
+          {{ $t("askQuestionTitle") }}
         </h2>
         <p class="mt-2 text-style-subtitle-2">
-          All questions will be reviewed and some will be answered in the
-          podcast. Most questions will be answered in the Q&A page.
+          {{ $t("askQuestionDescription") }}
         </p>
-        <div class="mt-4 button" @click="openSubmission">Ask a question</div>
+        <div class="mt-4 button" @click="openSubmission">
+          {{ $t("askQuestionButton") }}
+        </div>
       </div>
       <div class="w-full" v-if="questions">
         <QuestionAccordion

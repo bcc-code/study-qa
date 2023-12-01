@@ -16,6 +16,6 @@
         fill="currentFill"
       />
     </svg>
-    <span class="sr-only">Loading...</span>
+    <span class="sr-only">{{ $t("loading") }}...</span>
   </div>
 </template>
