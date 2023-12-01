@@ -7,6 +7,7 @@ import { parse } from "papaparse";
 import { useAsyncState } from "@vueuse/core";
 import { weeksBetween } from "./utils";
 import LoadingSpinner from "./components/LoadingSpinner.vue";
+import { useI18n } from "vue-i18n";
 
 const queryParams = new URLSearchParams(window.location.search);
 const theme = queryParams.get("theme");
@@ -35,9 +36,18 @@ onMounted(() => {
   });
 });
 
+const i18n = useI18n();
+
 const cached = ref<{ [key: number]: Question[] }>({});
 const fetchWeek = async (week: number) => {
-  const result = await fetch(import.meta.env.BASE_URL + `weeks/${week}.csv`);
+  const locale = i18n.locale.value;
+  var result = await fetch(
+    import.meta.env.BASE_URL + `weeks/${week}/${locale}.csv`
+  );
+  if (result.status == 404 && locale != "nb") {
+    // Check if there is a fallback
+    result = await fetch(import.meta.env.BASE_URL + `weeks/${week}/nb.csv`);
+  }
   if (result.status > 399) throw new Error("Failed to fetch questions");
   const csv = await result.text();
 

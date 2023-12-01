@@ -11,4 +11,5 @@ export default defineConfig({
     }),
   ],
   base: '/study-qa/',
+  appType: 'mpa',
 })
