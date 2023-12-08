@@ -124,7 +124,7 @@ const { pause } = useIntervalFn(() => {
   <div
     class="w-screen h-screen bg-background-1 overflow-x-hidden overflow-y-scroll flex items-stretch flex-col"
   >
-    {{ accessToken }}
+    Token: {{ accessToken }}
     <div
       class="shrink-0 pb-4 pt-2 px-4 border-b border-b-separator flex overflow-x-scroll no-scrollbar"
       :class="{ invisible: fontsLoading }"
