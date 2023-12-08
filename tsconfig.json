@@ -14,7 +14,9 @@
     "noEmit": true,
     "jsx": "preserve",
     "typeRoots": [],
-    "types": ["@intlify/unplugin-vue-i18n/messages"],
+    "paths": {
+      "*": ["./*.d.ts"]
+    },
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,

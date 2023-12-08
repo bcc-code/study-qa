@@ -4,7 +4,7 @@ import TabButton from "./components/TabButton.vue";
 import QuestionAccordion from "./components/QuestionAccordion.vue";
 import { Question } from "./types";
 import { parse } from "papaparse";
-import { useAsyncState } from "@vueuse/core";
+import { useAsyncState, useIntervalFn } from "@vueuse/core";
 import { weeksBetween } from "./utils";
 import LoadingSpinner from "./components/LoadingSpinner.vue";
 import { useI18n } from "vue-i18n";
@@ -100,16 +100,31 @@ const setWeek = (week: number) => {
   activeWeek.value = week;
 };
 
+declare var android: any;
+
 const openSubmission = () => {
   (android as any).openQuestionSubmission();
-  (window as any).webkit.messageHandlers.openQuestionSubmission.postMessage('');
+  (window as any).webkit.messageHandlers.openQuestionSubmission.postMessage("");
 };
+
+const accessToken = ref<String | undefined>(
+  (window as any).xamarin_webview?.accessToken
+);
+
+const { pause } = useIntervalFn(() => {
+  const token = (window as any).xamarin_webview?.accessToken;
+  if (token) {
+    accessToken.value = token;
+    pause();
+  }
+}, 100);
 </script>
 
 <template>
   <div
     class="w-screen h-screen bg-background-1 overflow-x-hidden overflow-y-scroll flex items-stretch flex-col"
   >
+    {{ accessToken }}
     <div
       class="shrink-0 pb-4 pt-2 px-4 border-b border-b-separator flex overflow-x-scroll no-scrollbar"
       :class="{ invisible: fontsLoading }"
