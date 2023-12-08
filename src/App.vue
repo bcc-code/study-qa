@@ -101,7 +101,8 @@ const setWeek = (week: number) => {
 };
 
 const openSubmission = () => {
-  (window as any).openQuestionSubmission();
+  (android as any).openQuestionSubmission();
+  (window as any).webkit.messageHandlers.openQuestionSubmission.postMessage('');
 };
 </script>
 
