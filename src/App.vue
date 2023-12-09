@@ -103,7 +103,10 @@ const setWeek = (week: number) => {
 declare var android: any;
 
 const openSubmission = () => {
-  (android as any).openQuestionSubmission();
+  if (android) {
+    (android as any).openQuestionSubmission();
+    return;
+  }
   (window as any).webkit.messageHandlers.openQuestionSubmission.postMessage("");
 };
 
