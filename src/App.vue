@@ -103,11 +103,13 @@ const setWeek = (week: number) => {
 declare var android: any;
 
 const openSubmission = () => {
-  if (android) {
+  if (typeof android !== 'undefined') {
     (android as any).openQuestionSubmission();
-    return;
   }
-  (window as any).webkit.messageHandlers.openQuestionSubmission.postMessage("");
+  var win = (window as any);
+  if (win.webkit) {
+    win.webkit.messageHandlers.openQuestionSubmission.postMessage("");
+  }
 };
 
 const accessToken = ref<String | undefined>(
