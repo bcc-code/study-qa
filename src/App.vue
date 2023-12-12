@@ -103,10 +103,10 @@ const setWeek = (week: number) => {
 declare var android: any;
 
 const openSubmission = () => {
-  if (typeof android !== 'undefined') {
+  if (typeof android !== "undefined") {
     (android as any).openQuestionSubmission();
   }
-  var win = (window as any);
+  var win = window as any;
   if (win.webkit) {
     win.webkit.messageHandlers.openQuestionSubmission.postMessage("");
   }

@@ -15,6 +15,6 @@ export default defineConfig({
       include: [path.resolve(__dirname, './src/lang/**')],
     }),
   ],
-  base: '/study-qa/' + process.env.FOLDER,
+  base: '/study-qa/' + process.env.FOLDER + "/",
   appType: 'mpa',
 })
