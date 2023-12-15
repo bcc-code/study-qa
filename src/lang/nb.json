@@ -1,7 +1,7 @@
 {
-    "askQuestionTitle": "Still et spørsmål om dagens episode",
-    "askQuestionDescription": "All questions will be reviewed and some will be answered in the podcast. Most questions will be answered in the Q&A page.",
-    "askQuestionButton": "Ask a question",
-    "loading": "Loading",
-    "week": "Week"
+    "askQuestionTitle": "Still et spørsmål om det du har hørt i dag",
+    "askQuestionDescription": "Alle spørsmål blir gjennomgått og noen vil bli besvart senere i podcasten. Flere spørsmål vil også bli besvart ukentlig her på Q&A siden i appen.",
+    "askQuestionButton": "Still et spørsmål",
+    "loading": "Laster",
+    "week": "Uke"
 }
