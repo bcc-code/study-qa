@@ -14,6 +14,8 @@ export default {
         'label-3': 'var(--label-3)',
         'on-color-1': 'var(--on-color-1)',
         'separator': 'var(--separator)',
+        'study-light': 'var(--study-light)',
+        'study-dark': 'var(--study-dark)',
       }
     },
     fontFamily: {

@@ -12,6 +12,8 @@
   --label-3: #757b80;
   --on-color-1: #ffffff;
   --separator: rgba(13, 19, 26, 0.1);
+  --study-light: #d5dcc9;
+  --study-dark: #28380b;
 }
 
 .theme-dark {
@@ -37,6 +39,10 @@
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
     }
+  }
+
+  .study-bg {
+    @apply bg-[url('img/bg.png')]  bg-no-repeat;
   }
 }
 
