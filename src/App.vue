@@ -8,6 +8,7 @@ import { useAsyncState, useIntervalFn } from "@vueuse/core";
 import { weeksBetween } from "./utils";
 import LoadingSpinner from "./components/LoadingSpinner.vue";
 import { useI18n } from "vue-i18n";
+import bgImgUrl from "./assets/img/bg.png";
 
 const queryParams = new URLSearchParams(window.location.search);
 const theme = queryParams.get("theme");
@@ -161,7 +162,7 @@ const { pause } = useIntervalFn(() => {
       >
         <img
           class="absolute top-0 left-0 w-full h-full object-cover z-10 pointer-events-none object-top"
-          src="img/bg.png"
+          :src="bgImgUrl"
           alt="Background Image"
         />
         <div
