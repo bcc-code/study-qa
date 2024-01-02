@@ -5,17 +5,16 @@ import QuestionAccordion from "./components/QuestionAccordion.vue";
 import { Question } from "./types";
 import { parse } from "papaparse";
 import { useAsyncState, useIntervalFn } from "@vueuse/core";
-import { weeksBetween } from "./utils";
 import LoadingSpinner from "./components/LoadingSpinner.vue";
 import { useI18n } from "vue-i18n";
 import bgImgUrl from "./assets/img/bg.png";
+import { currentWeek } from "./utils";
 
 const queryParams = new URLSearchParams(window.location.search);
 const theme = queryParams.get("theme");
 document.body.classList.add("theme-" + theme);
 
-const startDate = new Date("2023-11-06");
-const currentWeek = weeksBetween(startDate, new Date());
+console.log("Current week: " + currentWeek);
 const weeks = [...Array(currentWeek).keys()].map((i) => i + 1);
 const queryParamWeek = queryParams.get("week");
 const queryParamWeekNumber = queryParamWeek ? parseInt(queryParamWeek) : null;
