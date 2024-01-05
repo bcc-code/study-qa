@@ -4,7 +4,12 @@ import TabButton from "./components/TabButton.vue";
 import QuestionAccordion from "./components/QuestionAccordion.vue";
 import { Question } from "./types";
 import { parse } from "papaparse";
-import { useAsyncState, useIntervalFn } from "@vueuse/core";
+import {
+  useAsyncState,
+  useIntervalFn,
+  useImage,
+  useTimeoutFn,
+} from "@vueuse/core";
 import LoadingSpinner from "./components/LoadingSpinner.vue";
 import { useI18n } from "vue-i18n";
 import bgImgUrl from "./assets/img/bg.png";
@@ -123,6 +128,20 @@ const { pause } = useIntervalFn(() => {
     pause();
   }
 }, 100);
+
+const { isLoading } = useImage({ src: bgImgUrl, loading: "eager" });
+const bgLoading = ref(true);
+watch(isLoading, (loading) => {
+  if (!loading) {
+    bgLoading.value = false;
+  }
+});
+
+useTimeoutFn(() => {
+  if (bgLoading.value) {
+    bgLoading.value = false;
+  }
+}, 1000);
 </script>
 
 <template>
@@ -146,7 +165,7 @@ const { pause } = useIntervalFn(() => {
 
     <div
       class="flex flex-col items-center justify-center py-6 px-8 flex-1"
-      v-if="fontsLoading || questionsSnapshot.isLoading.value"
+      v-if="fontsLoading || questionsSnapshot.isLoading.value || bgLoading"
     >
       <LoadingSpinner />
     </div>
