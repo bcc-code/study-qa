@@ -13,7 +13,7 @@ import {
 import LoadingSpinner from "./components/LoadingSpinner.vue";
 import { useI18n } from "vue-i18n";
 import bgImgUrl from "./assets/img/bg.png";
-import { currentWeek, safeParseJwt } from "./utils";
+import { currentWeek, safeParseJwt, isWeekQuestionsReleased } from "./utils";
 
 const queryParams = new URLSearchParams(window.location.search);
 const theme = queryParams.get("theme");
@@ -148,17 +148,21 @@ const testers = import.meta.env.VITE_TESTERS?.split(",") || [];
 const isTester = computed(() => {
   console.log("isTester", parsedToken.value);
   const userId = parsedToken.value?.["https://members.bcc.no/app_metadata"]?.[
-    "https://members.bcc.no/app_metadata"
-  ]?.["personId"] as string | undefined;
+    "personId"
+  ] as string | undefined;
   if (!userId) return false;
-  return (
-    parsedToken.value &&
-    testers.includes(parsedToken.value.email) &&
-    parsedToken.value.exp * 1000 > Date.now()
-  );
+  return parsedToken.value && testers.includes(userId.toString());
 });
 
 const showToken = ref(false);
+
+const showQuestions = computed(() => {
+  return (
+    questions.value &&
+    questions.value.length > 0 &&
+    (isWeekQuestionsReleased(activeWeek.value) || isTester.value)
+  );
+});
 </script>
 
 <template>
@@ -166,16 +170,17 @@ const showToken = ref(false);
     class="w-screen h-screen bg-background-1 overflow-x-hidden overflow-y-scroll flex items-stretch flex-col"
   >
     <div
-      class="w-8 h-8 aspect-square bg-study-light rounded-full absolute top-4 right-8"
-      :class="{ 'opacity-0': !isTester }"
+      class="w-2 h-2 aspect-square bg-study-light rounded-full absolute top-4 right-8 opacity-0"
       @click="showToken = true"
     ></div>
     <div
-      class="absolute z-50 top-0 left-0 w-full h-full bg-study-light bg-opacity-90 flex items-center justify-center"
+      class="absolute z-50 top-0 left-0 w-full h-full bg-study-light bg-opacity-90 flex flex-col items-center justify-center"
       @click="showToken = false"
       v-if="showToken"
     >
-      T {{ parsedToken }}
+      <p>Token: {{ parsedToken }}</p>
+      <p>Tester: {{ isTester }}</p>
+      <p>Released: {{ isWeekQuestionsReleased(activeWeek) }}</p>
     </div>
     <div
       class="shrink-0 pb-4 pt-2 px-4 border-b border-b-separator flex overflow-x-scroll no-scrollbar"
@@ -202,9 +207,7 @@ const showToken = ref(false);
       <div
         class="m-2 rounded-3xl text-study-dark overflow-hidden relative bg-study-light"
         :class="{
-          'flex-1':
-            !questionsSnapshot.isLoading.value &&
-            (!questions || questions.length == 0),
+          'flex-1': !questionsSnapshot.isLoading.value && !showQuestions,
         }"
       >
         <img
@@ -250,7 +253,7 @@ const showToken = ref(false);
           </div>
         </div>
       </div>
-      <div class="w-full" v-if="questions">
+      <div class="w-full" v-if="showQuestions">
         <QuestionAccordion
           v-for="(question, index) in questions"
           :key="question.question"
