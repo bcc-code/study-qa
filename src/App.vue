@@ -3,7 +3,6 @@ import { computed, onMounted, ref, watch } from "vue";
 import TabButton from "./components/TabButton.vue";
 import QuestionAccordion from "./components/QuestionAccordion.vue";
 import { Question } from "./types";
-import { parse } from "papaparse";
 import {
   useAsyncState,
   useIntervalFn,
@@ -46,47 +45,34 @@ const contentLanguageQueryParam = queryParams.get("content-language");
 
 const cached = ref<{ [key: number]: Question[] }>({});
 const fetchWeek = async (week: number) => {
+  //if (cached.value[week]) return cached.value[week];
   const locale = contentLanguageQueryParam || i18n.locale.value;
   var result = await fetch(
-    import.meta.env.BASE_URL + `weeks/${week}/${locale}.csv`
+    import.meta.env.BASE_URL + `weeks/${week}/${locale}.json`
   );
   if (result.status == 404 && locale != "nb") {
     // Check if there is a fallback
-    result = await fetch(import.meta.env.BASE_URL + `weeks/${week}/nb.csv`);
+    result = await fetch(import.meta.env.BASE_URL + `weeks/${week}/nb.json`);
   }
   if (result.status > 399) throw new Error("Failed to fetch questions");
-  const csv = await result.text();
-
-  return await new Promise<Question[]>((resolve, reject) =>
-    parse<{ Question: string; Answer: string }>(csv, {
-      worker: false,
-      download: false,
-      delimiter: ";",
-      header: true,
-      skipEmptyLines: true,
-      error: (err: Error) => {
-        reject(err);
-      },
-      complete: (result) => {
-        console.log(result);
-        if (result.errors.length > 0) {
-          reject(result.errors[0]);
-          return;
-        }
-        const questions: Question[] = [];
-        for (const record of result.data) {
-          if (record.Question?.trim() && record.Answer?.trim()) {
-            questions.push({
-              question: record.Question.trim(),
-              answer: record.Answer.trim(),
-            });
-          }
-        }
-        cached.value[week] = questions;
-        resolve(questions);
-      },
-    })
-  );
+  // { "1": { "question": "Hva er 1+1?", "answer": "2" } }
+  const raw = await result.json();
+  const qas: Question[] = [];
+  for (const key in raw) {
+    const qNum = parseInt(key, 10);
+    if (isNaN(qNum)) continue;
+    const record = raw[qNum];
+    const question = record.question?.trim();
+    const answer = record.answer?.trim();
+    if (question && answer) {
+      qas.push({
+        question,
+        answer,
+      });
+    }
+  }
+  cached.value[week] = qas;
+  return qas;
 };
 
 const questionsPromise = ref<Promise<Question[]>>(fetchWeek(activeWeek.value));
@@ -145,8 +131,10 @@ useTimeoutFn(() => {
 
 const parsedToken = computed(() => safeParseJwt(accessToken.value));
 const testers = import.meta.env.VITE_TESTERS?.split(",") || [];
+const forceNotTester = ref(false);
 const isTester = computed(() => {
-  console.log("isTester", parsedToken.value);
+  if (forceNotTester.value) return false;
+  if (import.meta.env.DEV) return true;
   const userId = parsedToken.value?.["https://members.bcc.no/app_metadata"]?.[
     "personId"
   ] as string | undefined;
@@ -181,6 +169,8 @@ const showQuestions = computed(() => {
       <p>Token: {{ parsedToken }}</p>
       <p>Tester: {{ isTester }}</p>
       <p>Released: {{ isWeekQuestionsReleased(activeWeek) }}</p>
+      <p>Week: {{ activeWeek }}</p>
+      <button @click="forceNotTester = true">Force not tester</button>
     </div>
     <div
       class="shrink-0 pb-4 pt-2 px-4 border-b border-b-separator flex overflow-x-scroll no-scrollbar"

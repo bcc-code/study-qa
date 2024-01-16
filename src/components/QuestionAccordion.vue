@@ -22,7 +22,7 @@ watch(isOpen, () => {
 </script>
 
 <template>
-  <div>
+  <div class="select-text">
     <div class="relative w-full">
       <div class="absolute bottom-0 w-full">
         <div class="w-full px-4">
@@ -40,7 +40,7 @@ watch(isOpen, () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            class="transform transition duration-150 ease-out fill-current text-label-1"
+            class="transform transition duration-500 ease-out-expo fill-current text-label-1"
             :class="{
               'transform rotate-180': isOpen,
             }"
@@ -54,7 +54,7 @@ watch(isOpen, () => {
           </svg>
         </div>
         <div
-          class="relative overflow-hidden transition-[height, opacity] duration-150 ease-out"
+          class="relative overflow-hidden transition-[height, opacity] duration-500 ease-out-expo"
           :style="
             isOpen
               ? { height: `${height}px`, opacity: 1 }
