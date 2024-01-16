@@ -24,4 +24,27 @@ function getWeekNumber(d: Date) {
 const startDate = new Date("2024-01-08");
 const startingWeekNum = getWeekNumber(startDate);
 const weeksSinceStart = getWeekNumber(new Date()).weekNum - startingWeekNum.weekNum;
-export const currentWeek = Math.max(weeksSinceStart, 1);
+console.log("weeksSinceStart", weeksSinceStart);
+export const currentWeek = 1; //  Math.max(weeksSinceStart, 1);
+
+const currentWeekReleaseDate = new Date("2024-01-17T02:00:00.000Z");
+export function isWeekQuestionsReleased(week: number) {
+    if (week < currentWeek) return true;
+    if (new Date().getTime() - currentWeekReleaseDate.getTime() < 0) return false;
+    return true;
+}
+
+export function safeParseJwt(token: string | undefined): any | undefined {
+    if (!token) return undefined;
+    try {
+        var base64Url = token.split('.')[1];
+        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+
+        return JSON.parse(jsonPayload);
+    } catch (e) {
+        return undefined;
+    }
+}

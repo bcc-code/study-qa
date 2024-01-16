@@ -13,7 +13,7 @@ import {
 import LoadingSpinner from "./components/LoadingSpinner.vue";
 import { useI18n } from "vue-i18n";
 import bgImgUrl from "./assets/img/bg.png";
-import { currentWeek } from "./utils";
+import { currentWeek, safeParseJwt } from "./utils";
 
 const queryParams = new URLSearchParams(window.location.search);
 const theme = queryParams.get("theme");
@@ -117,7 +117,7 @@ const openSubmission = () => {
   }
 };
 
-const accessToken = ref<String | undefined>(
+const accessToken = ref<string | undefined>(
   (window as any).xamarin_webview?.accessToken
 );
 
@@ -142,12 +142,41 @@ useTimeoutFn(() => {
     bgLoading.value = false;
   }
 }, 1000);
+
+const parsedToken = computed(() => safeParseJwt(accessToken.value));
+const testers = import.meta.env.VITE_TESTERS?.split(",") || [];
+const isTester = computed(() => {
+  console.log("isTester", parsedToken.value);
+  const userId = parsedToken.value?.["https://members.bcc.no/app_metadata"]?.[
+    "https://members.bcc.no/app_metadata"
+  ]?.["personId"] as string | undefined;
+  if (!userId) return false;
+  return (
+    parsedToken.value &&
+    testers.includes(parsedToken.value.email) &&
+    parsedToken.value.exp * 1000 > Date.now()
+  );
+});
+
+const showToken = ref(false);
 </script>
 
 <template>
   <div
     class="w-screen h-screen bg-background-1 overflow-x-hidden overflow-y-scroll flex items-stretch flex-col"
   >
+    <div
+      class="w-8 h-8 aspect-square bg-study-light rounded-full absolute top-4 right-8"
+      :class="{ 'opacity-0': !isTester }"
+      @click="showToken = true"
+    ></div>
+    <div
+      class="absolute z-50 top-0 left-0 w-full h-full bg-study-light bg-opacity-90 flex items-center justify-center"
+      @click="showToken = false"
+      v-if="showToken"
+    >
+      T {{ parsedToken }}
+    </div>
     <div
       class="shrink-0 pb-4 pt-2 px-4 border-b border-b-separator flex overflow-x-scroll no-scrollbar"
       :class="{ invisible: fontsLoading }"
