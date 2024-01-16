@@ -1,12 +1,11 @@
 {
-    "askQuestionTitle": "Still et spørsmål om det du har hørt i dag",
-    "askQuestionDescription": "Alle spørsmål blir gjennomgått og noen vil bli besvart senere i podcasten. Flere spørsmål vil også bli besvart ukentlig her på Q&A siden i appen.",
-    "askQuestionButton": "Still et spørsmål",
-    "loading": "Laster",
-    "week": "Uke",
-    "Warmup fase": "Warmup fase",
-    "Fase 1": "Fase 1",
-    "Fase 2": "Fase 2",
-    "Fase 3": "Fase 3",
-    "Message to the Romans": "Message to the Romans"
+    "askQuestionTitle": "Postavi vprašanje o tem, kar si danes slišal",
+    "askQuestionDescription": "Vsa vprašanja bomo pregledali, na nekatera pa bomo odgovorili v podkastu. Na večino vprašanj boš vsak teden dobil odgovor v aplikaciji na strani Q&A.",
+    "askQuestionButton": "Postavi vprašanje",
+    "loading": "Nalaganje",
+    "week": "Teden",
+    "Warmup fase": "Faza ogrevanja",
+    "Fase 1": "1. faza",
+    "Fase 2": "2. faza",
+    "Fase 3": "3. faza"
 }

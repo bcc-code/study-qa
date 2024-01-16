@@ -1,12 +1,11 @@
 {
-    "askQuestionTitle": "Still et spørsmål om det du har hørt i dag",
-    "askQuestionDescription": "Alle spørsmål blir gjennomgått og noen vil bli besvart senere i podcasten. Flere spørsmål vil også bli besvart ukentlig her på Q&A siden i appen.",
-    "askQuestionButton": "Still et spørsmål",
-    "loading": "Laster",
-    "week": "Uke",
-    "Warmup fase": "Warmup fase",
-    "Fase 1": "Fase 1",
-    "Fase 2": "Fase 2",
-    "Fase 3": "Fase 3",
-    "Message to the Romans": "Message to the Romans"
+    "askQuestionTitle": "Bugün duyduklarınız hakkında bir soru sorun",
+    "askQuestionDescription": "Tüm sorular incelenecek ve bazıları podcast'te yanıtlanacaktır.  Soruların çoğu Soru&Cevap sayfasında yanıtlanacaktır.  Yanıtları okumak için Çarşamba günü tekrar kontrol edin.",
+    "askQuestionButton": "Bir soru sor",
+    "loading": "Yükleniyor",
+    "week": "Hafta",
+    "Warmup fase": "Isınma aşaması",
+    "Fase 1": "Aşama 1",
+    "Fase 2": "Aşama 2",
+    "Fase 3": "Aşama 3"
 }
