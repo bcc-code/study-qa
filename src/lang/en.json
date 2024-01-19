@@ -1,11 +1,11 @@
 {
-    "askQuestionTitle": "Still et spørsmål om det du har hørt i dag",
-    "askQuestionDescription": "Alle spørsmål blir gjennomgått og noen vil bli besvart senere i podcasten. Flere spørsmål vil også bli besvart ukentlig her på Q&A siden i appen.",
-    "askQuestionButton": "Still et spørsmål",
-    "loading": "Laster",
-    "week": "Uke",
-    "Warmup fase": "Warm-up fase",
-    "Fase 1": "Fase 1",
-    "Fase 2": "Fase 2",
-    "Fase 3": "Fase 3"
+    "askQuestionTitle": "Ask a question about what you have heard today",
+    "askQuestionDescription": "All questions will be reviewed, and some will be answered later in the podcast. Most questions will be answered weekly on the Q&A page.",
+    "askQuestionButton": "Ask a question",
+    "loading": "Loading",
+    "week": "Week",
+    "Warmup fase": "Warm-up phase",
+    "Fase 1": "Phase 1",
+    "Fase 2": "Phase 2",
+    "Fase 3": "Phase 3"
 }

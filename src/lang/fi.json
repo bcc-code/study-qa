@@ -1,11 +1,11 @@
 {
     "askQuestionTitle": "Esitä tänään kuulemaasi koskeva kysymys",
-    "askQuestionDescription": "Kaikki kysymykset katsotaan ja joihinkin vastataan podcastissa. Useimpiin vastataan \"kysymyksiä ja vastauksia\" -sivulla. \nMaanantaina voit lukea vastauksia.",
+    "askQuestionDescription": "Kaikki kysymykset katsotaan ja joihinkin vastataan podcastissa. Moniin kysymyksiin vastataan viikottain tämän sovelluksen \"kysymyksiä ja vastauksia\" -sivulla.",
     "askQuestionButton": "Esitä kysymys",
     "loading": "Ladataan",
     "week": "Viikko",
-    "Warmup fase": "Warm-up fase",
-    "Fase 1": "Fase 1",
-    "Fase 2": "Fase 2",
-    "Fase 3": "Fase 3"
+    "Warmup fase": "Lämmittelyvaihe",
+    "Fase 1": "Vaihe 1",
+    "Fase 2": "Vaihe 2",
+    "Fase 3": "Vaihe 3"
 }
