@@ -1,11 +1,11 @@
 {
-    "askQuestionTitle": "Still et spørsmål om det du har hørt i dag",
-    "askQuestionDescription": "Alle spørsmål blir gjennomgått og noen vil bli besvart senere i podcasten. Flere spørsmål vil også bli besvart ukentlig her på Q&A siden i appen.",
-    "askQuestionButton": "Still et spørsmål",
-    "loading": "Laster",
-    "week": "Uke",
-    "Warmup fase": "Warm-up fase",
-    "Fase 1": "Fase 1",
-    "Fase 2": "Fase 2",
-    "Fase 3": "Fase 3"
+    "askQuestionTitle": "இன்று நீங்கள் கேள்விப்பட்டதைப் பற்றி ஒரு கேள்வியைக் கேளுங்கள்",
+    "askQuestionDescription": "அனைத்து கேள்விகளும் மதிப்பாய்வு செய்யப்படும் மற்றும் சில பதில்கள் போட்காஸ்டில் வழங்கப்படும். பெரும்பாலான கேள்விகளுக்குக் கேள்வி பதில் பக்கத்தில் பதிலளிக்கப்படும். பதில்களைப் படிக்க, புதன்கிழமை மீண்டும் பார்க்கவும்.",
+    "askQuestionButton": "ஒரு கேள்வி கேள்",
+    "loading": "ஏற்றவும்",
+    "week": "வாரம்",
+    "Warmup fase": "தயாராகும் கட்டம்",
+    "Fase 1": "கட்டம் 1",
+    "Fase 2": "கட்டம் 2",
+    "Fase 3": "கட்டம் 3"
 }
