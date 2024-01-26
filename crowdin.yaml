@@ -20,5 +20,6 @@ files:
       "source": "/public/weeks/2/nb.json",
       "translation": "/public/weeks/2/%two_letters_code%.json",
       "dest": "/04-qa-24/week2.json",
+      "export_only_approved": true,
     },
   ]

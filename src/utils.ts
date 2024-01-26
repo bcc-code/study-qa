@@ -27,7 +27,7 @@ const weeksSinceStart = getWeekNumber(new Date()).weekNum - startingWeekNum.week
 console.log("weeksSinceStart", weeksSinceStart);
 export const currentWeek = 2; //  Math.max(weeksSinceStart, 1);
 
-const currentWeekReleaseDate = new Date("2024-01-29T03:00:00.000Z"); // 2024-01-24T03:00:00.000Z
+const currentWeekReleaseDate = new Date("2024-01-24T03:00:00.000Z"); // 2024-01-24T03:00:00.000Z
 export function isWeekQuestionsReleased(week: number) {
     if (week < currentWeek) return true;
     if (new Date().getTime() - currentWeekReleaseDate.getTime() < 0) return false;
