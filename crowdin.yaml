@@ -22,4 +22,10 @@ files:
       "dest": "/04-qa-24/week2.json",
       "export_only_approved": true,
     },
+    {
+      "source": "/public/weeks/3/nb.json",
+      "translation": "/public/weeks/3/%two_letters_code%.json",
+      "dest": "/04-qa-24/week3.json",
+      "export_only_approved": true,
+    },
   ]
