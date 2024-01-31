@@ -3,9 +3,5 @@
     "askQuestionDescription": "Tüm sorular incelenecek ve bazıları podcast'te yanıtlanacaktır.  Soruların çoğu Soru&Cevap sayfasında yanıtlanacaktır.  Yanıtları okumak için Çarşamba günü tekrar kontrol edin.",
     "askQuestionButton": "Bir soru sor",
     "loading": "Yükleniyor",
-    "week": "Hafta",
-    "Warmup fase": "Isınma aşaması",
-    "Fase 1": "Aşama 1",
-    "Fase 2": "Aşama 2",
-    "Fase 3": "Aşama 3"
+    "week": "Hafta"
 }
