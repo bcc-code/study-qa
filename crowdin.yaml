@@ -58,4 +58,10 @@ files:
       "dest": "/04-qa-24/week8.json",
       "export_only_approved": true,
     },
+    {
+      "source": "/public/weeks/9/nb.json",
+      "translation": "/public/weeks/9/%two_letters_code%.json",
+      "dest": "/04-qa-24/week9.json",
+      "export_only_approved": true,
+    },
   ]
