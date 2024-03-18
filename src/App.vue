@@ -19,7 +19,12 @@ const theme = queryParams.get("theme");
 document.body.classList.add("theme-" + theme);
 
 console.log("Current week: " + currentWeek);
-const weeks = [...Array(currentWeek).keys()].map((i) => i + 1);
+let modifier = 0;
+if (!isWeekQuestionsReleased(currentWeek)) {
+  modifier = 1;
+}
+
+const weeks = [...Array(currentWeek - modifier).keys()].map((i) => i + 1);
 const queryParamWeek = queryParams.get("week");
 const queryParamWeekNumber = queryParamWeek ? parseInt(queryParamWeek) : null;
 const queryParamWeekNumberValid =
@@ -29,7 +34,7 @@ const queryParamWeekNumberValid =
   currentWeek >= queryParamWeekNumber;
 
 const activeWeek = ref(
-  queryParamWeekNumberValid ? queryParamWeekNumber : currentWeek
+  queryParamWeekNumberValid ? queryParamWeekNumber : currentWeek - modifier
 );
 
 const fontsLoading = ref(true);
@@ -195,6 +200,7 @@ const showQuestions = computed(() => {
     </div>
     <div v-else class="flex flex-col items-center flex-1 select-none">
       <div
+        v-if="false"
         class="m-2 rounded-3xl text-study-dark overflow-hidden relative bg-study-light"
         :class="{
           'flex-1': !questionsSnapshot.isLoading.value && !showQuestions,
