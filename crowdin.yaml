@@ -64,4 +64,10 @@ files:
       "dest": "/04-qa-24/week9.json",
       "export_only_approved": true,
     },
+    {
+      "source": "/public/weeks/10/nb.json",
+      "translation": "/public/weeks/10/%two_letters_code%.json",
+      "dest": "/04-qa-24/week10.json",
+      "export_only_approved": true,
+    },
   ]
